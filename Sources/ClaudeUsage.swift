@@ -139,8 +139,9 @@ final class Usage: ObservableObject {
             opusFrac      = frac(r.seven_day_opus)
             sonnetFrac    = frac(r.seven_day_sonnet)
             extraEnabled  = r.extra_usage?.is_enabled ?? false
-            extraUsed     = r.extra_usage?.used_credits ?? 0
-            extraLimit    = r.extra_usage?.monthly_limit ?? 0
+            // The usage API returns extra-usage amounts in CENTS — convert to dollars.
+            extraUsed     = (r.extra_usage?.used_credits ?? 0) / 100
+            extraLimit    = (r.extra_usage?.monthly_limit ?? 0) / 100
             if let s = sessionFrac {
                 sessionHist.append(s)
                 if sessionHist.count > histLen { sessionHist.removeFirst(sessionHist.count - histLen) }
@@ -233,8 +234,9 @@ func fmtResetTime(_ date: Date?) -> String {
 func fmtUSD(_ v: Double) -> String {
     let f = NumberFormatter()
     f.numberStyle = .decimal
-    f.maximumFractionDigits = v < 100 ? 2 : 0
-    return "$" + (f.string(from: NSNumber(value: v)) ?? "0")
+    f.minimumFractionDigits = 2      // always show cents, e.g. $271.75 / $350.00
+    f.maximumFractionDigits = 2
+    return "$" + (f.string(from: NSNumber(value: v)) ?? "0.00")
 }
 
 func fmtAgo(_ date: Date?, now: Date) -> String {
