@@ -1,0 +1,14 @@
+# Build output (built locally with ./build.sh — not committed)
+*.app/
+Claude Usage.app/
+
+# Generated icon assets
+*.icns
+*.iconset/
+
+# macOS
+.DS_Store
+
+# SwiftPM / Xcode (this project uses neither, but just in case)
+.build/
+DerivedData/
