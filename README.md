@@ -8,17 +8,10 @@ built-in macOS desktop widget, so it sits neatly next to them.
 It reads the exact same numbers as Claude Code's own `/usage` screen, and
 refreshes every 60 seconds.
 
-```
-┌────────────────────┐
-│   ◔ 42%    ◔ 18%    │   rings: % used, countdown-to-reset inside
-│    3h 41m   4d 6h   │
-│   SESSION   WEEK    │
-│  ↻ 5:20 AM ↻ Mon…   │   absolute reset time under each ring
-│ EXTRA ██░░ $2 / $50 │   extra-usage credits (if enabled)
-│ ● claude · 12s ago  │   status dot + last-update age
-└────────────────────┘
-     (click to expand → per-model weekly, resets, session sparkline)
-```
+<p align="center">
+  <img src="docs/screenshot.png" alt="Claude Usage widget on the macOS desktop" width="360"><br>
+  <sub><i>Claude Usage on the desktop — 5-hour session &amp; weekly rings with reset countdowns, plus an extra-usage credits bar and a last-updated footer. Click to expand for per-model weekly usage.</i></sub>
+</p>
 
 ---
 
